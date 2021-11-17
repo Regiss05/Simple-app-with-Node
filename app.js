@@ -65,7 +65,7 @@ app.get('/info/get', (req, res) => {
 app.post('/info/add', (req, res) => {
     try {
         pool.connect(async (error, client, release) => {
-            let resp = await client.query(`INSERT INTO test (name) VALUES ('${req.body.add}')`);
+             await client.query(`INSERT INTO test (name) VALUES ('${req.body.name}')`);
             res.redirect('/info/get');
         })
     } catch {
@@ -76,7 +76,7 @@ app.post('/info/add', (req, res) => {
 app.post('/info/delete', (req, res) => {
     try {
         pool.connect(async (error, client, release) => {
-            let resp = await client.query(`DELETE FROM test WHERE name = '${req.body.delete}'`);
+         await client.query(`DELETE FROM test WHERE name = '${req.body.name}'`);
             res.redirect('/info/get');
         })
     } catch {
@@ -87,7 +87,7 @@ app.post('/info/delete', (req, res) => {
 app.post('/info/update', (req, res) => {
     try {
         pool.connect(async (error, client, release) => {
-            let resp = await client.query(`UPDATE test SET name = '${req.body.newValue}' WHERE name = '${req.body.oldValue}'`);
+             await client.query(`UPDATE test SET name = '${req.body.newValue}' WHERE name = '${req.body.oldValue}'`);
             res.redirect('/info/get');
         })
     } catch {
